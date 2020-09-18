@@ -29,10 +29,10 @@ export default {
   position: relative;
   overflow: auto;
   background: #F3F3F8;
-  padding: 30px;
+  padding: 20px;
 }
 .app-main.hasSiderBar{
-  width: calc(100vw - 210px);
+  width: calc(100vw - 180px);
 }
 .fixed-header+.app-main {
   padding-top: 50px;

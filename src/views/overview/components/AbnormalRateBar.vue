@@ -21,8 +21,10 @@
       },
       methods:{
         initChart(){
-          this.chart = echarts.init(this.$el)
+          let that=this
+          this.chart = echarts.init(this.$el);
           this.chart.setOption({
+            color: ['#3B6AF6', '#F06161', '#BEC9DE','#24CCDD','#F47E4B'],
             title: {
               text: '巡检异常项',
               left:'center',
@@ -46,7 +48,7 @@
               {
                 name: '访问来源',
                 type: 'pie',
-                radius: '55%',
+                radius: '50%',
                 center: ['50%', '60%'],
                 data: [
                   {value: 335, name: '登录失败'},
@@ -58,6 +60,9 @@
                     shadowBlur: 10,
                     shadowOffsetX: 0,
                     shadowColor: 'rgba(0, 0, 0, 0.5)'
+                  },
+                  labelLine: {
+                    show: true
                   }
                 },
                 label: {
@@ -68,29 +73,53 @@
                     rich: {
                       icon: {
                         fontSize: 8,
-                        padding: [-3, 5, 0, 0],
+                        padding: [-2, 5, 0, -3],
                       },
                       name: {
                         fontSize: 12,
                         color: '#666666',
-                        padding: [0, 0, 0, 3],
+                        padding: [0, 0, 0, 0],
                       }
                     }
                   }
                 },
                 labelLine: {
-                  normal: {
-                    length: 10,
-                    length2: 20,
-                    lineStyle: {
-                      color: '#e6e6e6',
-                    },
-
+                  length: 18,
+                  lineStyle: {
+                    color: "rgba(164, 177, 189, 1)"
                   }
-                },
+                }
               }
             ]
           })
+          //设置默认选中高亮部分
+          this.chart.dispatchAction({
+            type: 'highlight',
+            seriesIndex: 0,
+            dataIndex: 0
+          });
+          this.chart.on('mouseover', function(e) {
+            //当检测到鼠标悬停事件，取消默认选中高亮
+            that.chart.dispatchAction({
+              type: 'downplay',
+              seriesIndex: 0,
+              dataIndex: 0
+            });
+            //高亮显示悬停的那块
+            that.chart.dispatchAction({
+              type: 'highlight',
+              seriesIndex: 1,
+              dataIndex: e.dataIndex
+            });
+          });
+          //检测鼠标移出后显示之前默认高亮的那块
+          this.chart.on('mouseout', function(e) {
+            that.chart.dispatchAction({
+              type: 'highlight',
+              seriesIndex: 0,
+              dataIndex: 0
+            });
+          });
         }
       }
     }

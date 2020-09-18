@@ -1,30 +1,229 @@
 <template>
-  <div class="container">
-    <div class="dashboard-text">运行监测：监控监测</div>
+  <div class="monitor-detect-container">
+    <div class="search panel">
+      <div class="organization">
+        <label>组织机构</label>
+        <organization-select/>
+      </div>
+      <div class="status">
+        <label>运行状态</label>
+        <el-select v-model="provinceValue" clearable placeholder="请选择" @change="getCityList(provinceValue)">
+          <el-option
+            v-for="item in provinceList"
+            :key="item.AreaCode"
+            :label="item.Name"
+            :value="item.AreaCode">
+          </el-option>
+        </el-select>
+      </div>
+      <div class="name">
+        <label>监控名称</label>
+        <el-input v-model="input" placeholder="请输入名称"></el-input>
+      </div>
+      <div class="btn search-btn">查询</div>
+    </div>
+    <div class="tool-bar">
+      <div class="btn primary-btn">一键上报</div>
+      <div class="btn export-btn">导出</div>
+    </div>
+    <el-table
+      :key="tableKey"
+      v-loading="listLoading"
+      :data="list"
+      fit
+      highlight-current-row
+      style="width: 100%;"
+    >
+      <el-table-column
+        type="selection"
+        width="55">
+      </el-table-column>
+      <el-table-column
+        type="index" label="序号" width="50">
+      </el-table-column>
+      <el-table-column label="操作" align="center" width="150" class-name="small-padding fixed-width">
+        <template slot-scope="{row,$index}">
+          <el-button size="mini" >
+            预览
+          </el-button>
+          <el-button  size="mini">
+            上报
+          </el-button>
+        </template>
+      </el-table-column>
+      <el-table-column label="监控名称" prop="Name" align="center" width="180" class-name="monitor-name"></el-table-column>
+      <el-table-column label="在线状态" width="150px" align="center">
+        <template slot-scope="{row}">
+          <span>{{ row.OnlineStatus}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="质量状态" width="150px" align="center">
+        <template slot-scope="{row}">
+          <span>{{ row.QualityStatus}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="录制状态" width="150px" align="center">
+        <template slot-scope="{row}">
+          <span>{{ row.RecordStatus}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="县市区级" prop="Area" width="150px" align="center">
+      </el-table-column>
+      <el-table-column label="视频质量诊断时间" width="150px" align="center">
+        <template slot-scope="{row}">
+          <span>{{ row.VideoQualityDiagnosisTime | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="状态变更时间" width="150px" align="center">
+        <template slot-scope="{row}">
+          <span>{{ row.StatusChangeTime | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="离线时长" prop="OfflineTime" width="150px" align="center">
+      </el-table-column>
+      <el-table-column label="码流时延(ms)" width="180px">
+        <template slot-scope="{row}">
+          <span class="streamDelay-tag one">{{ row.StreamDelay[0]}}</span>
+          <span class="streamDelay-tag two">{{ row.StreamDelay[1]}}</span>
+          <span class="streamDelay-tag three">{{ row.StreamDelay[2]}}</span>
+        </template>
+      </el-table-column>
+    </el-table>
+    <div class="table-bottom">
+      <div class="legend">
+        <ul>
+          <li>图例：</li>
+          <li class="item"><span class="icon"></span>信令时延</li>
+          <li class="item"><span class="icon"></span>视频流时延</li>
+          <li class="item"><span class="icon"></span>关键帧时延</li>
+        </ul>
+      </div>
+      <pagination  :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
+    </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import OrganizationSelect from '@/components/OrganizationSelect';
+import { getMonitorDetectList} from '@/api/common';
+import Pagination from '@/components/Pagination'
 
 export default {
   name: 'Overview',
-  computed: {
-    ...mapGetters([
-      'name'
-    ])
+  components: {
+    OrganizationSelect,
+    Pagination
+  },
+  data(){
+    return{
+      tableKey: 0,
+      listLoading:false,
+      listData:null,
+      total:0,
+      listQuery:{
+        page:1,
+        limit:10
+      }
+    }
+  },
+  created() {
+    this.getList()
+  },
+  methods:{
+    getList() {
+      this.listLoading = true
+      getMonitorDetectList(this.listQuery).then(response => {
+        this.list = response.data.items
+        this.total = response.data.total
+
+        // Just to simulate the time of the request
+        setTimeout(() => {
+          this.listLoading = false
+        }, 1 * 1000)
+      })
+    },
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.dashboard {
-  &-container {
-    margin: 30px;
+  @import "~@/styles/variables.scss";
+
+.monitor-detect-container {
+  .search {
+    display: flex;
+    padding-top: 0;
+    padding-bottom: 0;
+    height: 60px;
+    line-height: 60px;
+    justify-content: space-between;
+    .organization{
+      display: flex;
+    }
+    label{
+      margin-right: 10px;
+      font-size: 13px;
+      font-weight: normal;
+      color: $mainTextColor;
+    }
+    .name{
+      display: flex;
+    }
   }
-  &-text {
-    font-size: 30px;
-    line-height: 46px;
+  .tool-bar{
+    display: flex;
+    margin:20px 0 15px;
+    .btn{
+      margin-right: 20px;
+    }
+  }
+  .streamDelay-tag{
+    padding:0 10px;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    color: #fff;
+    margin-right: 5px;
+    &.one{
+      background: #1A5E70;
+    }
+    &.two{
+      background: #0F839F;
+    }
+    &.three{
+      background: #06B3B6;
+    }
+  }
+  & .table-bottom li{
+    float: left;
+    margin-right: 20px;
+    .icon {
+      width: 20px;
+      height: 8px;
+      display: inline-block;
+      margin-right: 10px;
+      border-radius: 2px;
+    }
+    &:nth-child(2){
+      .icon{
+        background: #1A5E70;
+      }
+    }
+    &:nth-child(3){
+      .icon{
+        background: #0F839F;
+      }
+    }
+    &:nth-child(4){
+      .icon{
+        background: #06B3B6;
+      }
+    }
   }
 }
+</style>
+<style>
+  .monitor-detect-container .el-table td.monitor-name .cell{
+    color:#03B2B4!important;
+  }
 </style>

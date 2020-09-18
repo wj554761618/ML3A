@@ -58,7 +58,9 @@ div:focus {
     height: 0;
   }
 }
-
+ul{
+  list-style: none;
+}
 // main-container global css
 .app-container {
   font-size: 14px;
@@ -71,6 +73,47 @@ div:focus {
     background: #fff;
     border-radius: 4px;
     box-shadow: 0px 2px 9px 0px rgba(224, 224, 224, 0.14);
-    padding: 28px;
+    padding: 20px;
+  }
+  & .btn{
+    padding: 0 20px;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    font-size: 13px;
+    border-radius: 3px;
+    display: inline-block;
+  }
+  & .search-btn{
+    background: $main;
+    margin-top: 14px;
+
+  }
+  & .primary-btn{
+    background: $btnBlue;
+  }
+  & .export-btn{
+    background: $btnOrange;
   }
 }
+/*滚动条*/
+//滚动条的宽度
+
+::-webkit-scrollbar {
+
+  width: 8px;
+
+  height: 8px;
+
+}
+
+//滚动条的滑块
+
+::-webkit-scrollbar-thumb {
+
+  background-color: #C6CFDC;
+
+  border-radius: 5px;
+
+}
+

@@ -19,3 +19,10 @@ export function getResourceRunStatisticData() {
     method: 'get'
   })
 }
+export function getMonitorDetectList() {
+  return request({
+    url: '/vue-admin-template/monitorDetect/list',
+    method: 'get'
+  })
+}
+

@@ -5,12 +5,14 @@ const user = require('./user')
 const table = require('./table')
 const area = require('./area')
 const statistic = require('./statistic')
+const monitor = require('./monitor')
 
 const mocks = [
   ...user,
   ...table,
   ...area,
-  ...statistic
+  ...statistic,
+  ...monitor
 ]
 
 // for front mock

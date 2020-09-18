@@ -64,6 +64,20 @@ export default {
         this.currentTab="index2"
       }
     }
+  },
+  watch: {
+    $route(to, from) {
+      let path=to.path;
+      if(path.toLowerCase().indexOf("overview")>-1){
+        this.currentTab="index0"
+      }
+      if(path.toLowerCase().indexOf("inspectionstatistics")>-1){
+        this.currentTab="index1"
+      }
+      if(path.toLowerCase().indexOf("statisticalreport")>-1){
+        this.currentTab="index2"
+      }
+    }
   }
 }
 </script>

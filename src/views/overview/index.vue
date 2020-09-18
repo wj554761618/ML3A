@@ -4,6 +4,7 @@
       <div class="name">组织机构</div>
       <organization-select/>
     </div>
+    <!--监控点总数，监控在线率等-->
     <div class="bar-group">
       <el-row :gutter="20">
         <el-col :span="6" v-for="(item, index) in ringBarData" >
@@ -24,10 +25,12 @@
         </el-col>
       </el-row>
     </div>
+    <!--资源运行情况统计-->
     <div class="resource-run-content panel">
       <div class="dot"></div>
       <resource-run-bar :resourceRunData="resourceRunData" v-if="resourceRunData"/>
     </div>
+    <!--资源类型，异常占比-->
     <el-row :gutter="20"  class="moitor-type-abnormal">
       <el-col :span="12">
         <div class="moitor-type-statistic panel">
@@ -56,21 +59,34 @@
             </el-col>
             <el-col :span="12">
               <abnormal-rate-bar/>
+              <div class="total">
+                <span style="margin-right: 10px;font-size: 14px">异常总数</span>
+                <span style="font-family: PingFangZhonghei;font-size: 15px">434353534</span>
+              </div>
             </el-col>
           </el-row>
         </div>
       </el-col>
     </el-row>
+    <!--监控服务器对接平台监控统计-->
+    <div class="monitor-server-plat-table panel">
+      <div class="title">
+        <div class="dot"></div>
+        <div class="text">监控服务器对接平台监控统计</div>
+      </div>
+      <monitor-stastic-table/>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import OrganizationSelect from '@/components/OrganizationSelect';
-import RingPieBar from './components/RingPieBar';
-import ResourceRunBar from './components/ResourceRunBar';
-import MonitorTypeBar from './components/MonitorTypeBar';
-import AbnormalRateBar from './components/AbnormalRateBar';
+import RingPieBar from './components/RingPieBar';//环形饼图
+import ResourceRunBar from './components/ResourceRunBar';//树状图
+import MonitorTypeBar from './components/MonitorTypeBar';//横向树状图
+import AbnormalRateBar from './components/AbnormalRateBar';//饼图
+import MonitorStasticTable from './components/MonitorStasticTable';
 import { getTotalAndRate,getResourceRunStatisticData} from '@/api/common';
 export default {
   name: 'Overview',
@@ -86,7 +102,8 @@ export default {
     RingPieBar,
     ResourceRunBar,
     MonitorTypeBar,
-    AbnormalRateBar
+    AbnormalRateBar,
+    MonitorStasticTable
   },
   computed: {
     ...mapGetters([
@@ -253,6 +270,21 @@ export default {
             color: #282D32;
             text-align: center;
           }
+        }
+      }
+    }
+    & .monitor-server-plat-table{
+      margin-top: 20px;
+      min-height: 500px;
+      padding: 0;
+      .title{
+        padding: 18px 20px 30px;
+        .dot{
+          left: 20px;
+          top: 25px;
+        }
+        .text{
+          padding-left: 10px;
         }
       }
     }

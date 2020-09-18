@@ -53,37 +53,37 @@
   border: 1px solid #CDD4DA!important;
 }
 .el-select .el-input__inner{
-  width: 182px;
-  height: 34px;
-  line-height: 34px;
+  width: 140px;
+  height: 30px;
+  line-height: 30px;
   padding: 0 12px;
   font-size: 14px;
   &::-webkit-input-placeholder {
     /* WebKit browsers */
     color: #4C5967;
-    font-size: 14px;
+    font-size: 13px;
   }
   &:-moz-placeholder {
     /* Mozilla Firefox 4 to 18 */
     color: #4C5967;
-    font-size: 14px;
+    font-size: 13px;
   }
   &::-moz-placeholder {
     /* Mozilla Firefox 19+ */
     color: #4C5967;
-    font-size: 14px;
+    font-size: 13px;
   }
   &:-ms-input-placeholder {
     /* Internet Explorer 10+ */
     color: #4C5967;
-    font-size: 14px;
+    font-size: 13px;
   }
 }
 .el-select .el-input__icon{
   height: unset;
 }
-.el-select-dropdown{
-  top:160px!important;;
+.el-select>.el-input{
+  height: 42px!important;
 }
 /*radio单选框*/
 .el-radio__input.is-checked .el-radio__inner{
@@ -105,4 +105,57 @@
 }
 .el-radio__input.is-checked+.el-radio__label{
   color: #555!important;
+}
+/*表格*/
+.el-table td,.el-table th {
+  text-align: center !important;
+}
+.el-table th>.cell{
+  font-weight: normal!important;
+  font-size: 14px!important;
+  color: #4E4E4E!important;
+  font-family: PingFangZhonghei;
+}
+.el-table .cell{
+  font-size:13px!important;
+  color: #4C5967!important;
+}
+.el-table--striped .el-table__body tr.el-table__row--striped td{
+  background: #F9FBFF!important;
+}
+.el-table__body-wrapper{
+  margin-bottom: 10px;
+  .el-table__body{
+    margin-bottom: 8px;
+  }
+}
+/*输入框*/
+.el-input{
+  width: unset!important;
+}
+.el-input .el-input__inner{
+  height: 30px!important;
+  line-height: 30px!important;
+  width: 150px!important;
+  padding: 0 5px!important;
+  &::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: #4C5967;
+    font-size: 13px;
+  }
+  &:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #4C5967;
+    font-size: 13px;
+  }
+  &::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #4C5967;
+    font-size: 13px;
+  }
+  &:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: #4C5967;
+    font-size: 13px;
+  }
 }
