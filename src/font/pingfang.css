@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "PingFang SC";
+  src: url("pingfang.woff2") format("woff2"),
+       url("pingfang.woff") format("woff"),
+       url("pingfang.ttf") format("truetype"),
+       url("pingfang.eot") format("embedded-opentype"),
+       url("pingfang.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "PingFangZhonghei";
+  src: url("pingfangZhonghei.woff2") format("woff2"),
+  url("pingfangZhonghei.woff") format("woff"),
+  url("pingfangZhonghei.ttf") format("truetype"),
+  url("pingfangZhonghei.eot") format("embedded-opentype"),
+  url("pingfangZhonghei.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "PingFangSC-Regular";
+  src: url("PingFangSCRegular.woff2") format("woff2"),
+  url("PingFangSCRegular.woff") format("woff"),
+  url("PingFangSCRegular.ttf") format("truetype"),
+  url("PingFangSCRegular.eot") format("embedded-opentype"),
+  url("PingFangSCRegular.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}

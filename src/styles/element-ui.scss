@@ -1,0 +1,108 @@
+// cover some element-ui styles
+
+.el-breadcrumb__inner,
+.el-breadcrumb__inner a {
+  font-weight: 400 !important;
+}
+
+.el-upload {
+  input[type="file"] {
+    display: none !important;
+  }
+}
+
+.el-upload__input {
+  display: none;
+}
+
+
+// to fixed https://github.com/ElemeFE/element/issues/2461
+.el-dialog {
+  transform: none;
+  left: 0;
+  position: relative;
+  margin: 0 auto;
+}
+
+// refine element ui upload
+.upload-container {
+  .el-upload {
+    width: 100%;
+
+    .el-upload-dragger {
+      width: 100%;
+      height: 200px;
+    }
+  }
+}
+
+// dropdown
+.el-dropdown-menu {
+  a {
+    display: block
+  }
+}
+
+// to fix el-date-picker css style
+.el-range-separator {
+  box-sizing: content-box;
+}
+
+/*下拉框*/
+.el-select .el-input.is-focus .el-input__inner{
+  border: 1px solid #CDD4DA!important;
+}
+.el-select .el-input__inner{
+  width: 182px;
+  height: 34px;
+  line-height: 34px;
+  padding: 0 12px;
+  font-size: 14px;
+  &::-webkit-input-placeholder {
+    /* WebKit browsers */
+    color: #4C5967;
+    font-size: 14px;
+  }
+  &:-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: #4C5967;
+    font-size: 14px;
+  }
+  &::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: #4C5967;
+    font-size: 14px;
+  }
+  &:-ms-input-placeholder {
+    /* Internet Explorer 10+ */
+    color: #4C5967;
+    font-size: 14px;
+  }
+}
+.el-select .el-input__icon{
+  height: unset;
+}
+.el-select-dropdown{
+  top:160px!important;;
+}
+/*radio单选框*/
+.el-radio__input.is-checked .el-radio__inner{
+  border-color: #0CC4C6!important;
+  background: none!important;
+}
+.el-radio__inner{
+  border: 2px solid #DCDFE6!important;
+  width: 16px!important;
+  height: 16px!important;
+}
+.el-radio__inner::after{
+  width: 8px!important;
+  height: 8px!important;
+  background: #03B2B4!important;
+}
+.el-radio{
+  color: #555!important;
+}
+.el-radio__input.is-checked+.el-radio__label{
+  color: #555!important;
+}

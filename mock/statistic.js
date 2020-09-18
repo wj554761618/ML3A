@@ -1,0 +1,166 @@
+const valueAndRate=[
+  {
+    Name:"监控点总数",
+    Total:40102,
+    Value:[
+      {
+        name:"高清",
+        value:"112220"
+      },
+      {
+        name:"标清",
+        value:"222303"
+      },
+      {
+        name:"其他",
+        value:"9293"
+      }
+    ]
+  },
+  {
+    Name:"监控在线率",
+    Total:"96%",
+    Value:[
+      {
+        name:"在线",
+        value:"56%"
+      },
+      {
+        name:"离线",
+        value:"26%"
+      },
+      {
+        name:"其他",
+        value:"19%"
+      }
+    ]
+  },
+  {
+    Name:"图像可用率",
+    Total:"78%",
+    Value:[
+      {
+        name:"正常",
+        value:"56%"
+      },
+      {
+        name:"异常",
+        value:"26%"
+      },
+      {
+        name:"其他",
+        value:"19%"
+      }
+    ]
+  },
+  {
+    Name:"录像正常率",
+    Total:"58%",
+    Value:[
+      {
+        name:"正常",
+        value:"32%"
+      },
+      {
+        name:"异常",
+        value:"12%"
+      },
+      {
+        name:"其他",
+        value:"19%"
+      }
+    ]
+  }
+]
+const resourceRunData=[
+  {
+    Name:'海南省公安厅',
+    Online:'20.123%',
+    Image:'30.11%',
+    Video:'40.23%'
+  },
+  {
+    Name:'海南省交通厅',
+    Online:'10.11%',
+    Image:'50%',
+    Video:'40%'
+  },
+  {
+    Name:'海南省口岸办',
+    Online:'30%',
+    Image:'40%',
+    Video:'70%'
+  },
+  {
+    Name:'海南海事局',
+    Online:'20%',
+    Image:'30%',
+    Video:'40%'
+  },
+  {
+    Name:'海口海关',
+    Online:'14%',
+    Image:'56%',
+    Video:'34%'
+  },
+  {
+    Name:'海南省口岸办',
+    Online:'28%',
+    Image:'58%',
+    Video:'59%'
+  },
+  {
+    Name:'海兰信',
+    Online:'23%',
+    Image:'67%',
+    Video:'70%'
+  },
+  {
+    Name:'军民融合办',
+    Online:'10%',
+    Image:'45%',
+    Video:'40%'
+  },
+  {
+    Name:'海南省住建厅',
+    Online:'68%',
+    Image:'56%',
+    Video:'34%'
+  },
+  {
+    Name:'军民融合办(海防)',
+    Online:'34%',
+    Image:'38%',
+    Video:'59%'
+  },
+  {
+    Name:'军民融合办(海防)',
+    Online:'34%',
+    Image:'38%',
+    Video:'59%'
+  },
+]
+module.exports=[
+  //获取监控总数等
+  {
+    url: '/vue-admin-template/statistic/getTotalAndRate',
+    type: 'get',
+    response: () => {
+        return {
+          code: 20000,
+          data: valueAndRate
+        }
+    }
+  },
+  //获取监控运行
+  {
+    url: '/vue-admin-template/statistic/getResourceRunData',
+    type: 'get',
+    response: () => {
+      return {
+        code: 20000,
+        data: resourceRunData
+      }
+    }
+  }
+]
