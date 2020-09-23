@@ -93,7 +93,7 @@ export default {
 <style scoped>
 .pagination-container {
   background: #fff;
-  padding: 32px 16px;
+  padding: 23px 0;
 }
 .pagination-container.hidden {
   display: none;

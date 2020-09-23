@@ -27,12 +27,14 @@ export default {
   min-height: calc(100vh - 60px);
   width: 100vw;
   position: relative;
-  overflow: auto;
   background: #F3F3F8;
   padding: 20px;
 }
 .app-main.hasSiderBar{
-  width: calc(100vw - 180px);
+  width: calc(100vw - 188px);
+}
+.app-main .hideSidebar {
+
 }
 .fixed-header+.app-main {
   padding-top: 50px;

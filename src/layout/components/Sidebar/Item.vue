@@ -15,7 +15,7 @@ export default {
   render(h, context) {
     const { icon, title } = context.props
     const vnodes = []
-
+    vnodes.push(<span class='border-left'></span>)
     if (icon) {
       if (icon.includes('el-icon')) {
         vnodes.push(<i class={[icon, 'sub-el-icon']} />)

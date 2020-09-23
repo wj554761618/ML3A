@@ -1,5 +1,5 @@
 <template>
-    <div class="resource-run-bar" style="height:90%;width:100%" ></div>
+    <div class="resource-run-bar" style="height:95%;width:100%" ></div>
 </template>
 
 <script>
@@ -29,14 +29,18 @@
             xAxisIndex: 0,
             zoomLock: true,
             width:"50%",
-            height:5,
+            height:8,
             handleSize: 0,
-            showDetail: false,
             startValue: 0,
             left:'center',
             bottom:'2%',
             endValue: 9,
-            borderColor: "#eee"
+            borderColor: "#C7D0DA",
+            fillerColor: '#C7D0DA',
+            showDataShadow: false,//是否显示数据阴影 默认auto
+            showDetail: false,//即拖拽时候是否显示详细数值信息 默认true
+            realtime:true, //是否实时更新
+            filterMode: 'filter'
           }, {
             type: 'inside',
             id: 'dataZoomX',
@@ -95,7 +99,7 @@
             type: 'category',
             data: this.resourceRunData.category,
             axisLabel: {
-              padding: [10, 0, 0, 0],
+              padding: [10, 0, 10, 0],
               color: "#666666",
               fontSize: 12
             },

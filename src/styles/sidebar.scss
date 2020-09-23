@@ -79,6 +79,15 @@
     }
     .el-submenu .el-menu-item.is-active{
       background: $subMenuHover!important;
+      .border-left{
+        position: absolute;
+        width: 2px;
+        height: 25px;
+        background: #0F859D;
+        left: 0;
+        top: 50%;
+        margin-top: -13px;
+      }
     }
     // menu hover
     .submenu-title-noDropdown,
@@ -91,6 +100,7 @@
     /*未展开*/
     .el-submenu__icon-arrow{
       transform: rotateZ(-90deg)!important;
+      top:56%;
     }
     /*展开后*/
     .el-submenu.is-opened>.el-submenu__title .el-submenu__icon-arrow{
@@ -117,6 +127,7 @@
       min-width: $sideBarWidth !important;
       background-color: $subMenuBg !important;
       color: $subMenuText!important;
+      padding:  0 20px!important;
 
       &:hover {
         background-color: $subMenuHover !important;
@@ -127,6 +138,9 @@
           color: $subMenuActiveText!important;
         }
       }
+      .svg-icon{
+        transform: scale(0.7);
+      }
     }
   }
    .el-menu-item.is-active i{
@@ -136,8 +150,8 @@
     .sidebar-container {
       width: 54px !important;
     }
-    .app-main{
-      width:calc(100vw - 54px) ;
+    .hasSiderBar{
+      width:calc(100vw - 62px) ;
     }
     .submenu-title-noDropdown {
       padding: 0 !important;
@@ -261,4 +275,7 @@
       border-radius: 20px;
     }
   }
+}
+.el-menu>div:nth-child(3) span{
+  font-size: 16px;
 }
