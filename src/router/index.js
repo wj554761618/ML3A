@@ -58,7 +58,7 @@ export const constantRoutes = [
     redirect: 'inspectionStatistics/detect/monitor',
     name: 'detect',
     alwaysShow: true,
-    meta: { title: '运行监测', icon: 'el-icon-s-help',module:'inspectionStatistics' },
+    meta: { title: '运行监测', icon: 'home_icon_Operation_normal',module:'inspectionStatistics' },
     children: [
       {
         path: 'monitor',
@@ -85,7 +85,7 @@ export const constantRoutes = [
       {
         path: 'monitoringAccess',
         name: 'monitoringAccess',
-        component: () => import('@/views/detect/monitor/index'),
+        component: () => import('@/views/inspectionSettings/monitoringAccess/index'),
         meta: { title: '监控接入巡检'}
       },
       {

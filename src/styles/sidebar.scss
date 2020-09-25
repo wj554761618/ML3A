@@ -121,6 +121,7 @@
     }
     & .el-submenu>.el-submenu__title>span{
       font-size: 16px!important;
+      font-family: PingFangZhongHei;
     }
     & .nest-menu .el-submenu>.el-submenu__title,
     & .el-submenu .el-menu-item {
@@ -278,4 +279,5 @@
 }
 .el-menu>div:nth-child(3) span{
   font-size: 16px;
+  font-family: PingFangZhongHei;
 }

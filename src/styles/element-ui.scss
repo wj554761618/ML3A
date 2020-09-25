@@ -107,7 +107,7 @@
   color: #555!important;
 }
 /*表格*/
-.el-table td,.el-table th {
+.el-table th {
   text-align: center !important;
 }
 .el-table th>.cell{
@@ -127,6 +127,12 @@
   margin-bottom: 7px;
   .el-table__body{
     margin-bottom: 10px;
+  }
+}
+.el-table .icon-text{
+  padding-left:30px;
+  svg{
+    margin-right: 5px;
   }
 }
 /*输入框*/
@@ -206,4 +212,23 @@
 .el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner{
   background-color: $main!important;
   border-color: $main!important;
+}
+/*tree*/
+.el-tree-node__label{
+  color: #4A4A4A;
+}
+.el-tree-node__expand-icon{
+  color: #909191!important;
+}
+.el-tree-node__expand-icon.is-leaf{
+  color:transparent!important;
+}
+.el-tree-node__content{
+  height: 35px!important;
+}
+.el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content{
+  background: #F2F7F9!important;
+}
+.el-tree--highlight-current .el-tree-node.is-current>.el-tree-node__content .el-tree-node__label{
+  color: #0F859D!important;
 }

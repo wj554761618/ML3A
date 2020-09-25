@@ -1,4 +1,4 @@
-import { login, logout, getInfo } from '@/api/user'
+import { login, logout, getInfo ,refreshToken} from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
 
@@ -25,6 +25,9 @@ const mutations = {
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
+  },
+  SaveTokenExpire: (state, expireTime) => {
+    state.expireTime = expireTime
   }
 }
 
@@ -34,16 +37,20 @@ const actions = {
     const { username, password } = userInfo
     return new Promise((resolve, reject) => {
       login({ username: username.trim(), password: password }).then(response => {
-        const { data } = response
+        const {data} = response
         commit('SET_TOKEN', data.token)
         setToken(data.token)
+        let curTime = new Date();
+        let expiredate = new Date(curTime.setSeconds(curTime.getSeconds() + data.expires_in)); // 定义过期时间
+        commit("SaveTokenExpire", expiredate)
+        window.localStorage.refreshtime = expiredate; // 保存刷新时间，这里的和过期时间一致
+        window.localStorage.TokenExpire=expiredate
         resolve()
       }).catch(error => {
         reject(error)
       })
     })
   },
-
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {

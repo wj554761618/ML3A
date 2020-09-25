@@ -56,6 +56,64 @@ const province=[
     ]
   }
 ]
+const arealist=[
+  {
+    AreaCode:"65",
+    Name:"新疆维吾尔自治区",
+    children:[
+      {
+        AreaCode:"6501",
+        Name:"乌鲁木齐",
+        children:[
+          {
+            AreaCode:"650102",
+            Name:"天山区"
+          }
+        ]
+      },
+      {
+        AreaCode:"650106",
+        Name:"职业技能培训学校",
+        children:[
+          {
+            AreaCode:"650101",
+            Name:"天目区"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    AreaCode:"46",
+    Name:"海南省",
+    children:[
+      {
+        AreaCode:"4601",
+        Name:"海口市",
+        children:[
+          {
+            AreaCode:"460100",
+            Name:"美兰区"
+          },
+          {
+            AreaCode:"460100",
+            Name:"秀英区"
+          }
+        ]
+      },
+      {
+        AreaCode:"4602",
+        Name:"琼海市",
+        children:[
+          {
+            AreaCode:"460201",
+            Name:"龙江镇"
+          }
+        ]
+      }
+    ]
+  }
+]
 let getProvince=function(areaCode){
   if(areaCode==="0") return province;
   for(let i=0;i<province.length;i++){
@@ -90,6 +148,17 @@ module.exports=[
       return {
         code: 20000,
         data: data
+      }
+    }
+  },
+  //获取省市县
+  {
+    url: '/vue-admin-template/getAreaTreeList',
+    type: 'get',
+    response: config => {
+      return {
+        code: 20000,
+        data: arealist
       }
     }
   }

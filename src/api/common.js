@@ -13,6 +13,12 @@ export function getTotalAndRate() {
     method: 'get'
   })
 }
+/*export function getTotalAndRate() {
+  return request({
+    url: '/Module/Get',
+    method: 'get'
+  })
+}*/
 export function getResourceRunStatisticData() {
   return request({
     url: '/vue-admin-template/statistic/getResourceRunData',
@@ -24,6 +30,12 @@ export function getMonitorDetectList(data) {
     url: '/vue-admin-template/monitorDetect/list',
     method: 'get',
     params: { data }
+  })
+}
+export function getAreaTreeList() {
+  return request({
+    url: '/vue-admin-template/getAreaTreeList',
+    method: 'get'
   })
 }
 

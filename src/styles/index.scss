@@ -100,6 +100,7 @@ ul{
     font-size: 13px;
     border-radius: 2px;
     display: inline-block;
+    margin-right: 20px;
   }
   & .search-btn{
     background: $main;
@@ -111,6 +112,9 @@ ul{
   }
   & .export-btn{
     background: $btnOrange;
+  }
+  & .success-btn{
+    background: $main;
   }
 }
 /*滚动条*/
@@ -133,4 +137,3 @@ ul{
   border-radius: 5px;
 
 }
-

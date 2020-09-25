@@ -11,7 +11,7 @@
           <el-option
             v-for="item in runStatusList"
             :key="item.id"
-            :label="item.name"
+            :label="item.value"
             :value="item.id">
           </el-option>
         </el-select>
@@ -40,7 +40,7 @@
           width="55">
         </el-table-column>
         <el-table-column
-          type="index" label="序号" width="50">
+          type="index" label="序号" width="50" align="center">
         </el-table-column>
         <el-table-column label="操作" align="center" width="150" class-name="small-padding fixed-width">
           <template slot-scope="{row,$index}">
@@ -49,19 +49,19 @@
           </template>
         </el-table-column>
         <el-table-column label="监控名称" prop="Name" align="center" width="180" class-name="monitor-name"></el-table-column>
-        <el-table-column label="在线状态" width="150px" align="center">
+        <el-table-column label="在线状态" width="150px">
           <template slot-scope="{row}">
-            <span>{{ row.OnlineStatus}}</span>
+            <span class="icon-text"><svg-icon icon-class="dot" :style="formatStatus(row.OnlineStatus,'id','OnlineStatus').attr"></svg-icon>{{formatStatus(row.OnlineStatus,'id','OnlineStatus').value}}</span>
           </template>
         </el-table-column>
-        <el-table-column label="质量状态" width="150px" align="center">
+        <el-table-column label="质量状态" width="150px">
           <template slot-scope="{row}">
-            <span>{{ row.QualityStatus}}</span>
+            <span class="icon-text"><svg-icon :icon-class="formatStatus(row.QualityStatus,'id','QualityStatus').attr.icon" ></svg-icon>{{formatStatus(row.QualityStatus,'id','QualityStatus').value}}</span>
           </template>
         </el-table-column>
-        <el-table-column label="录制状态" width="150px" align="center">
+        <el-table-column label="录制状态" width="150px">
           <template slot-scope="{row}">
-            <span>{{ row.RecordStatus}}</span>
+            <span class="icon-text"><svg-icon icon-class="dot" :style="formatStatus(row.OnlineStatus,'id','OnlineStatus').attr"></svg-icon>{{formatStatus(row.RecordStatus,'id','RecordStatus').value}}</span>
           </template>
         </el-table-column>
         <el-table-column label="县市区级" prop="Area" width="150px" align="center">
@@ -73,18 +73,18 @@
         </el-table-column>
         <el-table-column label="状态变更时间" width="150px" align="center">
           <template slot-scope="{row}">
-            <span>{{ row.StatusChangeTime }}</span>
+            <span>{{ row.StatusChangeTime| parseTime('{y}-{m}-{d} {h}:{i}')  }}</span>
           </template>
         </el-table-column>
         <el-table-column label="离线时长" prop="OfflineTime" width="100px" align="center">
         </el-table-column>
-        <!--<el-table-column label="码流时延(ms)" width="120px">
+        <el-table-column label="码流时延(ms)" width="150px">
           <template slot-scope="{row}">
             <span class="streamDelay-tag one">{{ row.StreamDelay[0]}}</span>
             <span class="streamDelay-tag two">{{ row.StreamDelay[1]}}</span>
             <span class="streamDelay-tag three">{{ row.StreamDelay[2]}}</span>
           </template>
-        </el-table-column>-->
+        </el-table-column>
       </el-table>
     </div>
 
@@ -105,7 +105,8 @@
 <script>
 import OrganizationSelect from '@/components/OrganizationSelect';
 import { getMonitorDetectList} from '@/api/common';
-import Pagination from '@/components/Pagination'
+import Pagination from '@/components/Pagination';
+import {getByValue,getObjectValueByName} from '@/utils';
 
 export default {
   name: 'Overview',
@@ -125,24 +126,7 @@ export default {
         runStatus:'',
         name:''
       },
-      runStatusList:[
-        {
-          id:'1',
-          name:'正常'
-        },
-        {
-          id:'2',
-          name:'视频异常'
-        },
-        {
-          id:'3',
-          name:'不在线'
-        },
-        {
-          id:'4',
-          name:'未配置'
-        }
-      ]
+      runStatusList:getObjectValueByName("RunStatus")
     }
   },
   created() {
@@ -161,7 +145,11 @@ export default {
         }, 1 * 1000)
       })
     },
-  }
+    formatStatus(row,key,name){
+      let obj=getByValue(row,key,name);
+      return obj
+    }
+  },
 }
 </script>
 
@@ -184,6 +172,7 @@ export default {
       font-size: 13px;
       font-weight: normal;
       color: $mainTextColor;
+      font-family: PingFangZhongHei;
     }
     .name{
       display: flex;
@@ -192,9 +181,6 @@ export default {
   .tool-bar{
     display: flex;
     margin:20px 0 15px;
-    .btn{
-      margin-right: 20px;
-    }
   }
   .streamDelay-tag{
     padding:0 10px;
@@ -204,13 +190,13 @@ export default {
     color: #fff;
     margin-right: 5px;
     &.one{
-      background: #1A5E70;
+      background: #076072;
     }
     &.two{
-      background: #0F839F;
+      background: #0F859D;
     }
     &.three{
-      background: #06B3B6;
+      background:#03B2B4;
     }
   }
   .column-btn{
@@ -238,7 +224,6 @@ export default {
       height: 8px;
       display: inline-block;
       margin-right: 10px;
-      border-radius: 2px;
     }
     &:nth-child(2){
       .icon{

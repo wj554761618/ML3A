@@ -1,7 +1,7 @@
 /**
  * Created by PanJiaChen on 16/11/18.
  */
-
+import {ObjectValue} from './keyValueMapping'
 /**
  * Parse the time to string
  * @param {(Object|string|number)} time
@@ -114,4 +114,41 @@ export function param2Obj(url) {
     }
   })
   return obj
+}
+
+/*根据某个键和键值返回对象中的另外一个键值
+* @param {string} value  键值
+* @param {string} key   键
+* @param {string} name  枚举的名字
+* */
+export function getByValue(value,key,name) {
+  let arr=ObjectValue[name]
+  for(let i=0;i<arr.length;i++){
+    if(arr[i][key]===value){
+      return arr[i]
+    }
+  }
+}
+
+/*根据枚举名字返回枚举
+* @param {string} name  枚举的名字
+* */
+export function getObjectValueByName(name) {
+  return ObjectValue[name]
+}
+
+//保存刷新时间
+export function saveRefreshtime(params){
+  let nowtime = new Date();
+  let lastRefreshtime = window.localStorage.refreshtime ? new Date(window.localStorage.refreshtime) : new Date(-1);
+  let expiretime = new Date(Date.parse(window.localStorage.TokenExpire))
+
+  let refreshCount=1;//滑动系数
+  if (lastRefreshtime >= nowtime) {
+    lastRefreshtime=nowtime>expiretime ? nowtime:expiretime;
+    lastRefreshtime.setMinutes(lastRefreshtime.getMinutes() + refreshCount);
+    window.localStorage.refreshtime = lastRefreshtime;
+  }else {
+    window.localStorage.refreshtime = new Date(-1);
+  }
 }
