@@ -31,6 +31,7 @@
         :key="tableKey"
         v-loading="listLoading"
         :data="listData"
+        :height="550"
         fit
         highlight-current-row
         style="width: 100%;"

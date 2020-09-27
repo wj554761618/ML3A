@@ -2,7 +2,7 @@ const green='#03B2B4';
 const red='#F06161';
 const gray='#BEC9DE';
 const ObjectValue={
-  OnlineStatus:[
+  OnlineStatus:[//在线状态
     {
       id:'0',
       key:'online',
@@ -20,7 +20,7 @@ const ObjectValue={
       }
     }
   ],
-  QualityStatus:[
+  QualityStatus:[//质量状态
     {
       id:'0',
       key:'normal',
@@ -46,7 +46,7 @@ const ObjectValue={
       }
     }
   ],
-  RecordStatus:[
+  RecordStatus:[//录制状态
     {
       id:'0',
       key:'normal',
@@ -64,7 +64,7 @@ const ObjectValue={
       }
     }
   ],
-  RunStatus:[
+  RunStatus:[//运行状态
     {
       id:'1',
       value:'正常'
@@ -80,6 +80,20 @@ const ObjectValue={
     {
       id:'4',
       value:'未配置'
+    }
+  ],
+  InspectionStatus:[//巡检状态
+    {
+      id:'0',
+      value:'未开始'
+    },
+    {
+      id:'1',
+      value:'未完成'
+    },
+    {
+      id:'2',
+      value:'已完成'
     }
   ]
 }

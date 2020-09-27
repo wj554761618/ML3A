@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="18px" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>播放备份</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="00整合切图" transform="translate(-224.000000, -376.000000)" fill="#919DB5" fill-rule="nonzero">
+            <g id="播放备份" transform="translate(224.000000, 376.000000)">
+                <path d="M9,0 C13.9704785,0 18,4.02952148 18,9 C18,13.9704785 13.9704785,18 9,18 C4.02952148,18 0,13.9704785 0,9 C0,4.02952148 4.02952148,0 9,0 Z M8,5 L6,5 L6,13 L8,13 L8,5 Z M12,5 L10,5 L10,13 L12,13 L12,5 Z" id="形状"></path>
+            </g>
+        </g>
+    </g>
+</svg>
